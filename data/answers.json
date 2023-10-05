@@ -1,0 +1,48 @@
+{
+  "card": [
+    {
+      "id": 1,
+      "img": "../src/img/ayf.webp",
+      "question": "вопрос 1",
+      "answers": [
+        { "id": 1, "answer": "вариант ответа 1", "correct": true },
+        { "id": 2, "answer": "вариант ответа 2", "correct": false },
+        { "id": 3, "answer": "вариант ответа 3", "correct": false },
+        { "id": 4, "answer": "вариант ответа 4", "correct": false }
+      ]
+    },
+    {
+      "id": 2,
+      "img": "../src/img/ayf2.png",
+      "question": "вопрос 2",
+      "answers": [
+        { "id": 1, "answer": "вариант ответа 1", "correct": false },
+        { "id": 2, "answer": "вариант ответа 2", "correct": false },
+        { "id": 3, "answer": "вариант ответа 3", "correct": false },
+        { "id": 4, "answer": "вариант ответа 4", "correct": true }
+      ]
+    },
+    {
+      "id": 3,
+      "img": "../src/img/ayf3.jpeg",
+      "question": "вопрос 3",
+      "answers": [
+        { "id": 1, "answer": "вариант ответа 1", "correct": false },
+        { "id": 2, "answer": "вариант ответа 2", "correct": true },
+        { "id": 3, "answer": "вариант ответа 3", "correct": false },
+        { "id": 4, "answer": "вариант ответа 4", "correct": false }
+      ]
+    },
+    {
+      "id": 4,
+      "img": "../src/img/ayf4.jpeg",
+      "question": "вопрос 4",
+      "answers": [
+        { "id": 1, "answer": "вариант ответа 1", "correct": false },
+        { "id": 2, "answer": "вариант ответа 2", "correct": false },
+        { "id": 3, "answer": "вариант ответа 3", "correct": true },
+        { "id": 4, "answer": "вариант ответа 4", "correct": false }
+      ]
+    }
+  ]
+}
