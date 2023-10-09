@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-  import MainCardBox from "./pages/MainCardBox.vue"
+  import MainCardBox from './pages/MainCardBox.vue'
 </script>
 
 <style scoped>
