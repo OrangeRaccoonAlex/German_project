@@ -10,7 +10,13 @@
         <span class="text-black">{{ card.question }}</span>
       </div>
 
-      <div class="bg-green-400">прогрессбар</div>
+      <div class="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+        <div class="bg-purple-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+             :style="`width: ${progress}%`"
+        >
+          {{ `${progress}%` }}
+        </div>
+      </div>
 
       <div v-for="answer in card.answers" :key="answer.id" class="flex items-center">
         <!-- TODO не работают стили на чек-бокс-->
@@ -37,7 +43,7 @@
                    hover:text-white
                    hover:bg-purple-600
                    hover:border-transparent"
-          @click="nextQuestion()"
+          @click="nextQuestion"
   >
     Далее
   </button>
@@ -45,11 +51,26 @@
 
 <script setup lang="ts">
 import answers from '../../data/answers.json'
-import { ref } from "vue";
+import { ref} from "vue";
 
 let currentIndex = ref(0)
+let progress = (Math.floor(currentIndex.value + 1) * 100) / answers.card.length;
 
-const nextQuestion = ():number => currentIndex.value++
+function stepCounter():number {
+  return currentIndex.value++
+}
+
+function progressBarStep():number {
+  if(progress < 100) {
+    progress = (Math.floor(currentIndex.value + 1) * 100) / answers.card.length;
+  }
+  return 100;
+}
+
+function nextQuestion(): any {
+  stepCounter()
+  progressBarStep()
+}
 
 </script>
 
