@@ -2,8 +2,7 @@
   <div v-for="(card, index) in answers.card" :key="index">
     <div v-if="index === currentIndex">
       <div>
-        <!--TODO подумать, как вывести картинку-->
-        <img alt="ебаная картинка" style="max-height: 200px" :src="card.img">
+        <img alt="ебаная картинка" style="height: 400px" :src="card.img">
       </div>
 
       <div>
@@ -56,18 +55,18 @@ import { ref} from "vue";
 let currentIndex = ref(0)
 let progress = (Math.floor(currentIndex.value + 1) * 100) / answers.card.length;
 
-function stepCounter():number {
+let stepCounter = ():number => {
   return currentIndex.value++
 }
 
-function progressBarStep():number {
+let progressBarStep = ():number => {
   if(progress < 100) {
     progress = (Math.floor(currentIndex.value + 1) * 100) / answers.card.length;
   }
   return 100;
 }
 
-function nextQuestion(): any {
+function nextQuestion(): void {
   stepCounter()
   progressBarStep()
 }

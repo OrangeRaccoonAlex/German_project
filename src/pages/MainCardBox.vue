@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 
+// TODO подумать, как перетащить логику кнопки в Actions
 // import Actions from "../components/Actions.vue";
 import Card from "../components/Card.vue";
 </script>

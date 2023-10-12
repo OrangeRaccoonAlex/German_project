@@ -1,9 +1,9 @@
 <template>
-  <MainCardBox />
+  <RouterView></RouterView>
 </template>
 
 <script setup lang="ts">
-  import MainCardBox from './pages/MainCardBox.vue'
+
 </script>
 
 <style scoped>
