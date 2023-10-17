@@ -31,26 +31,43 @@
       </div>
     </div>
   </div>
-  <button class="  px-4
-                   py-1
-                   text-sm
-                   text-purple-600
-                   font-semibold
-                   rounded-full
-                   border
-                   border-purple-200
-                   hover:text-white
-                   hover:bg-purple-600
-                   hover:border-transparent"
-          @click="nextQuestion"
+  <button
+      v-if="isLastQuestion"
+      class="px-4
+             py-1
+             text-sm
+             text-purple-600
+             font-semibold
+             rounded-full
+             border
+             border-purple-200
+             hover:text-white
+             hover:bg-purple-600
+             hover:border-transparent"
+      @click="nextQuestion"
   >
     Далее
   </button>
+
+  <RouterLink
+      to="/home"
+      v-else
+  >
+    <button
+        class="px-4
+               py-1
+               text-sm
+               text-purple-600"
+    >
+      Завершить
+    </button>
+  </RouterLink>
+
 </template>
 
 <script setup lang="ts">
 import answers from '../../data/answers.json'
-import { ref} from "vue";
+import {computed, ref} from "vue";
 
 let currentIndex = ref(0)
 let progress = (Math.floor(currentIndex.value + 1) * 100) / answers.card.length;
@@ -58,6 +75,10 @@ let progress = (Math.floor(currentIndex.value + 1) * 100) / answers.card.length;
 let stepCounter = ():number => {
   return currentIndex.value++
 }
+
+const isLastQuestion = computed(() => {
+  return currentIndex.value + 1 !== answers.card.length;
+})
 
 let progressBarStep = ():number => {
   if(progress < 100) {

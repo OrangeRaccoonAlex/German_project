@@ -4,12 +4,11 @@ import './styles/variables.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
-// TODO доделать навигацию
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { name: 'Home', path: '/home', component: () => import('./pages/Home.vue') },
-        { name: 'Answers', path: '/answers', component: () => import('./pages/MainCardBox.vue') },
+        { name: 'Home', path: '/home', alias: '/', component: () => import('./pages/Home.vue') },
+        { name: 'Questions', path: '/questions', component: () => import('./pages/MainCardBox.vue') },
     ],
 })
 
