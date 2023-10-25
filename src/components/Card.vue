@@ -20,42 +20,22 @@
       <div v-for="answer in card.answers" :key="answer.id" class="flex items-center">
         <!-- TODO не работают стили на радио-кнопку-->
         <input
-            :value="answer.correct"
+            :value="answer.id"
             v-model="answerChecked"
             name="answersRadio"
             type="radio"
             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
         />
-        <div class="pl-4">
+        <div class="pl-4 text-left">
           <p class="text-xl font-medium text-black">{{ answer.answer }}</p>
-          <p class="text-green-700" v-if="correctAnswer && currentAnswerId === answer.id">верный ответ</p>
+          <p class="text-green-700" v-if="answer.correct && answerChecked">верный ответ</p>
         </div>
       </div>
     </div>
   </div>
   <div class="flex justify-end">
-    <button class="px-4
-                   py-1
-                   mr-4
-                   text-sm
-                   text-purple-600
-                   font-semibold
-                   rounded-full
-                   border
-                   border-purple-200
-                   hover:text-white
-                   hover:bg-purple-400
-                   duration-300
-                   hover:border-transparent
-                   disabled:opacity-25"
-            :disabled="answerChecked === null"
-            @click="showCorrectAnswer"
-    >
-      Показать ответы
-    </button>
     <button
         v-if="isLastQuestion"
-        :disabled="!correctAnswer"
         class="px-4
                py-1
                text-sm
@@ -95,10 +75,8 @@ import questionsData from '../../data/questionsData.json'
 import { computed, ref } from "vue";
 
 let currentIndex = ref(0)
-let correctAnswer = ref(false)
-let currentAnswerId = ref(0)
-let answerChecked = ref(null)
 let progress = (Math.floor(currentIndex.value + 1) * 100) / questionsData.card.length;
+let answerChecked = ref(false)
 
 let stepCounter = ():number => {
   return currentIndex.value++
@@ -111,14 +89,6 @@ let progressBarStep = ():number => {
   return 100;
 }
 
-const showCorrectAnswer = () => {
-  let currentQuestion =  questionsData.card[currentIndex.value]
-  let currentCorrectAnswer = currentQuestion.answers.find(item => item.correct === true)
-  // TODO поправить костыль
-  correctAnswer.value = currentCorrectAnswer!.correct
-  currentAnswerId.value = currentCorrectAnswer!.id
-}
-
 const isLastQuestion = computed(() => {
   return currentIndex.value + 1 !== questionsData.card.length;
 })
@@ -126,8 +96,7 @@ const isLastQuestion = computed(() => {
 function nextQuestion(): void {
   stepCounter()
   progressBarStep()
-  correctAnswer.value = false
-  currentAnswerId.value = 0
+  answerChecked.value = false
 }
 
 </script>
